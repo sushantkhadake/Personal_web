@@ -220,9 +220,18 @@ $(document).ready(function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Add a small delay for better UX
+                setTimeout(() => {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            }
         });
     });
   
@@ -265,6 +274,33 @@ $(document).ready(function () {
         navClose.addEventListener('click', () => {
             navScreen.style.right = '-285px';
         });
+    }
+  
+    // Progress bar animation trigger
+    const skillsSection = document.querySelector('.skills');
+    const progressBars = document.querySelectorAll('.progress-bar');
+  
+    function animateProgressBars() {
+        progressBars.forEach(bar => {
+            const width = bar.parentElement.getAttribute('data-progress') || bar.style.width;
+            bar.style.width = width;
+        });
+    }
+  
+    // Intersection Observer for skills section
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateProgressBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+  
+    if (skillsSection) {
+        observer.observe(skillsSection);
     }
   });
   
