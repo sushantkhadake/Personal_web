@@ -199,17 +199,17 @@ $(document).ready(function () {
             $("#email").val("");
             $("#message").val("");
           })
-          .fail(function (data) {
+          .fail(function (jqXHR, textStatus, errorThrown) {
             // Make sure that the formMessages div has the 'error' class.
             $(formMessages).removeClass("success");
             $(formMessages).addClass("error");
   
             // Set the message text.
-            if (data.responseText !== "") {
-              $(formMessages).text(data.responseText);
+            if (jqXHR.responseText !== "") {
+              $(formMessages).text(jqXHR.responseText);
             } else {
               $(formMessages).text(
-                "Oops! An error occured and your message could not be sent."
+                "Oops! An error occurred and your message could not be sent."
               );
             }
           });
@@ -301,6 +301,79 @@ $(document).ready(function () {
   
     if (skillsSection) {
         observer.observe(skillsSection);
+    }
+  
+    // Certificates scroll effect
+    const certificatesScroll = document.querySelector('.certificates-scroll');
+    const wideCards = document.querySelectorAll('.wide-card');
+  
+    function updateCardSizes() {
+        if (!certificatesScroll) return;
+  
+        const containerCenter = certificatesScroll.scrollLeft + certificatesScroll.offsetWidth / 2;
+  
+        wideCards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+            const distance = Math.abs(containerCenter - cardCenter);
+  
+            // Normalize distance to a 0-1 range, where 0 is center, 1 is edge
+            // Max distance could be half of the scrollable width + card width
+            const maxDistance = certificatesScroll.offsetWidth / 2 + card.offsetWidth / 2;
+            const normalizedDistance = Math.min(1, distance / maxDistance);
+  
+            // Scale from 1 (center) down to 0.6 (-40% smaller) for edges
+            const scale = 1 - (0.4 * normalizedDistance);
+            // Opacity from 1 (center) down to 0.7 for edges
+            const opacity = 1 - (0.3 * normalizedDistance);
+  
+            card.style.transform = `scale(${scale})`;
+            card.style.opacity = opacity;
+        });
+    }
+  
+    // Initial update and on scroll
+    if (certificatesScroll) {
+        certificatesScroll.addEventListener('scroll', updateCardSizes);
+        // A slight delay might be needed if cards load after scroll position is set
+        window.addEventListener('load', updateCardSizes); 
+        // Or call directly if confident about DOM readiness
+        updateCardSizes();
+    }
+  
+    // Portfolio cards scroll effect
+    const portfolioCardsScroll = document.querySelector('.portfolio-cards-scroll');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+  
+    function updatePortfolioCardSizes() {
+        if (!portfolioCardsScroll) return;
+  
+        const containerCenter = portfolioCardsScroll.scrollLeft + portfolioCardsScroll.offsetWidth / 2;
+  
+        portfolioCards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+            const distance = Math.abs(containerCenter - cardCenter);
+  
+            // Normalize distance to a 0-1 range, where 0 is center, 1 is edge
+            const maxDistance = portfolioCardsScroll.offsetWidth / 2 + card.offsetWidth / 2;
+            const normalizedDistance = Math.min(1, distance / maxDistance);
+  
+            // Scale from 1 (center) down to 0.6 (-40% smaller) for edges
+            const scale = 1 - (0.4 * normalizedDistance);
+            // Opacity from 1 (center) down to 0.7 for edges
+            const opacity = 1 - (0.3 * normalizedDistance);
+  
+            card.style.transform = `scale(${scale})`;
+            card.style.opacity = opacity;
+        });
+    }
+  
+    // Initial update and on scroll for portfolio cards
+    if (portfolioCardsScroll) {
+        portfolioCardsScroll.addEventListener('scroll', updatePortfolioCardSizes);
+        window.addEventListener('load', updatePortfolioCardSizes); 
+        updatePortfolioCardSizes();
     }
   });
   

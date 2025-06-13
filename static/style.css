@@ -128,14 +128,14 @@ body {
     align-items: center;
 }
 
-#home .image-content img {
+#home,#contact .image-content img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-#home h1 {
+#home,#contact h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
@@ -218,18 +218,135 @@ body {
 }
 
 /* Portfolio Section */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+.portfolio-cards-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 1rem; /* Space for scrollbar */
     margin-top: 2.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.portfolio-cards-scroll::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit browsers */
+    width: 0; /* For Firefox */
+    height: 0; /* For Firefox */
+}
+
+.portfolio-cards-scroll {
+    scrollbar-width: none; /* For Firefox */
+}
+
+.portfolio-card {
+    flex: 0 0 auto; /* Do not grow, do not shrink, base on content */
+    width: 350px; /* Adjust as needed to show approx 3 at instance */
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* For JS effect */
+}
+
+.portfolio-card img {
+    max-width: 100%;
+    height: 200px; /* Fixed height for project images */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.portfolio-card h3 {
+    color: #007bff;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.portfolio-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Achievements Section */
+.certificates-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 1rem; /* Space for scrollbar */
+    margin-top: 2.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.certificates-scroll::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit browsers */
+    width: 0; /* For Firefox */
+    height: 0; /* For Firefox */
+}
+
+.certificates-scroll {
+    scrollbar-width: none; /* For Firefox */
+}
+
+.certificates-scroll::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.certificates-scroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.wide-card {
+    flex: 0 0 auto;
+    width: 550px; /* Increased width */
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wide-card h3 {
+    color: #007bff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.wide-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
 }
 
 /* Contact Section */
+#contact .content {
+    display: flex;
+    gap: 2rem;
+}
+
+#contact .text-content {
+    flex: 4;
+}
+
+#contact .image-content {
+    flex: 1;
+}
+
 #contact {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
-
+#contact-form {
+    /* width: 700px; */ /* Removed fixed width to allow flex to control size */
+}
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -297,6 +414,55 @@ footer {
     color: #007bff;
     opacity: 1;
     transform: translateY(-3px);
+}
+
+/* Links Section */
+#links {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333; /* Adjust text color for lighter background */
+    min-height: 300px; /* Set a minimum height for the section */
+    display: flex; /* Ensure flex properties apply to align content */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content if needed */
+}
+
+#links .content {
+    background: transparent;
+    box-shadow: none;
+    text-align: center; /* Center the title and links */
+}
+
+.profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    color: #2c3e50;
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.profile-link i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.profile-link:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
 }
 
 /* Animations */
@@ -389,7 +555,7 @@ footer {
         margin-bottom: 1rem;
     }
 
-    .portfolio-grid {
+    .portfolio-cards-scroll {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
@@ -429,5 +595,87 @@ footer {
     #home .image-content img {
         max-width: 90%;
     }
+}
+
+#contact .image-content img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Qualification Section */
+.qualification-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    justify-content: center;
+}
+
+.qualification-marks,
+.qualification-summary {
+    flex: 1;
+    min-width: 300px; /* Ensures minimum width before wrapping */
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.qualification-marks h3,
+.qualification-summary h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.qualification-marks ul {
+    list-style: none;
+    padding: 0;
+}
+
+.qualification-marks li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.qualification-marks li strong {
+    color: #007bff;
+}
+
+.qualification-summary p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Responsive adjustments for Qualification Section */
+@media (max-width: 768px) {
+    .qualification-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .qualification-marks,
+    .qualification-summary {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+/* Qualification Section */
+#Qualification {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+#Qualification .content {
+    background: transparent;
+    box-shadow: none;
 }
   
