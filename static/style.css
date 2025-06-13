@@ -17,7 +17,37 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+/*logo*/
 
+.logo-container {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    color: #b367bc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(48, 24, 90, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  .logo-icon {
+    color: #b367bc;
+  }
+  
+  .cursor {
+    font-weight: bold;
+    animation: blink 1s step-start infinite;
+    color: #b367bc;
+  }
+  
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  
 /* Navigation */
 .navbar {
     position: fixed;
@@ -354,9 +384,7 @@ body {
 #contact {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
-#contact-form {
-    /* width: 700px; */
-}
+
 .form-group {
     margin-bottom: 1.5rem;
 }
