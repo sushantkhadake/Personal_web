@@ -221,26 +221,36 @@ body {
 .portfolio-cards-scroll {
     display: flex;
     overflow-x: auto;
-    gap: 2rem;
-    padding-bottom: 1rem; /* Space for scrollbar */
+    gap: 1.5rem;
+    padding-bottom: 1rem;
     margin-top: 2.5rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
 }
 
 .portfolio-cards-scroll::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Webkit browsers */
-    width: 0; /* For Firefox */
-    height: 0; /* For Firefox */
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 .portfolio-cards-scroll {
-    scrollbar-width: none; /* For Firefox */
+    scrollbar-width: none;
+}
+
+.portfolio-cards-scroll::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.portfolio-cards-scroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
 
 .portfolio-card {
-    flex: 0 0 auto; /* Do not grow, do not shrink, base on content */
-    width: 350px; /* Adjust as needed to show approx 3 at instance */
+    flex: 0 0 auto;
+    width: 350px;
     background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 10px;
@@ -249,13 +259,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* For JS effect */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .portfolio-card img {
     max-width: 100%;
-    height: 200px; /* Fixed height for project images */
-    object-fit: cover; /* Cover the area, cropping if necessary */
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1rem;
 }
@@ -277,20 +287,20 @@ body {
     display: flex;
     overflow-x: auto;
     gap: 2rem;
-    padding-bottom: 1rem; /* Space for scrollbar */
+    padding-bottom: 1rem;
     margin-top: 2.5rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
 
 .certificates-scroll::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Webkit browsers */
-    width: 0; /* For Firefox */
-    height: 0; /* For Firefox */
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 .certificates-scroll {
-    scrollbar-width: none; /* For Firefox */
+    scrollbar-width: none;
 }
 
 .certificates-scroll::-webkit-scrollbar-thumb {
@@ -304,7 +314,7 @@ body {
 
 .wide-card {
     flex: 0 0 auto;
-    width: 550px; /* Increased width */
+    width: calc(45% - 1rem);
     background: #f8f9fa;
     padding: 2rem;
     border-radius: 10px;
@@ -345,7 +355,7 @@ body {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 #contact-form {
-    /* width: 700px; */ /* Removed fixed width to allow flex to control size */
+    /* width: 700px; */
 }
 .form-group {
     margin-bottom: 1.5rem;
@@ -419,17 +429,17 @@ footer {
 /* Links Section */
 #links {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    color: #333; /* Adjust text color for lighter background */
-    min-height: 300px; /* Set a minimum height for the section */
-    display: flex; /* Ensure flex properties apply to align content */
-    align-items: center; /* Vertically center content */
-    justify-content: center; /* Horizontally center content if needed */
+    color: #333;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #links .content {
     background: transparent;
     box-shadow: none;
-    text-align: center; /* Center the title and links */
+    text-align: center;
 }
 
 .profile-links {
@@ -556,8 +566,32 @@ footer {
     }
 
     .portfolio-cards-scroll {
-        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .portfolio-card {
+        width: calc(100% - 2rem);
+        scroll-snap-align: center;
+    }
+
+    .wide-card {
+        width: calc(100% - 2rem);
+        scroll-snap-align: center;
+    }
+
+    #contact .content {
+        flex-direction: column;
         gap: 1.5rem;
+    }
+
+    #contact .image-content {
+        order: -1;
+        margin-bottom: 1.5rem;
+    }
+
+    #contact .image-content img {
+        max-width: 80%;
+        margin: 0 auto;
     }
 
     .form-group {
@@ -567,6 +601,35 @@ footer {
     button {
         width: 100%;
         padding: 0.8rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    #about p,
+    .qualification-summary p,
+    .portfolio-card p,
+    .wide-card p {
+        font-size: 0.9rem;
+    }
+
+    .profile-link {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .profile-link i {
+        font-size: 1.3rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
+        margin: 0 0.8rem;
     }
 }
 
@@ -595,6 +658,44 @@ footer {
     #home .image-content img {
         max-width: 90%;
     }
+
+    .section {
+        padding: 3rem 0.8rem 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    #about p,
+    .qualification-summary p,
+    .portfolio-card p,
+    .wide-card p {
+        font-size: 0.85rem;
+    }
+
+    .profile-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .social-links a {
+        font-size: 1.3rem;
+        margin: 0 0.6rem;
+    }
+
+    input, textarea, button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    #contact .image-content img {
+        max-width: 90%;
+    }
 }
 
 #contact .image-content img {
@@ -609,14 +710,14 @@ footer {
     display: flex;
     gap: 2rem;
     margin-top: 2rem;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
 .qualification-marks,
 .qualification-summary {
     flex: 1;
-    min-width: 300px; /* Ensures minimum width before wrapping */
+    min-width: 300px;
     background: #f8f9fa;
     padding: 2rem;
     border-radius: 10px;
